@@ -32,7 +32,7 @@ List<Widget> makeCircleImages(List<Movie> movies){
         onTap: (){},
         child: Container(
           padding: EdgeInsets.only(right: 10),
-          child: Align(alignment: Alignment.centerLeft, child: CircleAvatar(backgroundImage: AssetImage('images/'+movies[i].poster),
+          child: Align(alignment: Alignment.centerLeft, child: CircleAvatar(backgroundImage: NetworkImage(movies[i].poster),
           radius: 48,),),
         ),
       )

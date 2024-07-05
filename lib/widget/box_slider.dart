@@ -36,7 +36,7 @@ List<Widget> makeBoxImages(List<Movie> movies) {
             alignment: Alignment.centerLeft,
             child: Align(
               alignment: Alignment.centerLeft,
-              child: Image.asset('images/' + movies[i].poster),
+              child: Image.network(movies[i].poster),
             )),
       ),
     ));

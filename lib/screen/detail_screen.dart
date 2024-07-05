@@ -32,7 +32,7 @@ class _DetailScreenState extends State<DetailScreen> {
                     width: double.maxFinite,
                     decoration: BoxDecoration(
                         image: DecorationImage(
-                            image: AssetImage('images/' + widget.movie.poster),
+                            image: NetworkImage(widget.movie.poster),
                             fit: BoxFit.cover)),
                     child: ClipRect(
                       child: BackdropFilter(
@@ -45,8 +45,7 @@ class _DetailScreenState extends State<DetailScreen> {
                               children: [
                                 Container(
                                   padding: EdgeInsets.fromLTRB(0, 45, 0, 10),
-                                  child: Image.asset(
-                                      'images/' + widget.movie.poster),
+                                  child: Image.network(widget.movie.poster),
                                   height: 300,
                                 ),
                                 Container(
@@ -115,9 +114,10 @@ class _DetailScreenState extends State<DetailScreen> {
                                             EdgeInsets.fromLTRB(20, 10, 20, 10),
                                         child: InkWell(
                                           onTap: () {
-                                            // 추가: 내가 찜한 콘텐츠 버튼 클릭 시 동작
+                                            
                                             setState(() {
                                               like = !like;
+                                              widget.movie.reference.update({'like':like});
                                             });
                                           },
                                           child: Column(
@@ -159,18 +159,24 @@ class _DetailScreenState extends State<DetailScreen> {
                                         ),
                                       ),
                                       Container(
-                                        padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                                        padding:
+                                            EdgeInsets.fromLTRB(20, 10, 20, 10),
                                         child: Container(
                                           child: Column(
                                             children: [
                                               Icon(Icons.send),
-                                              Padding(padding: EdgeInsets.all(5),),
+                                              Padding(
+                                                padding: EdgeInsets.all(5),
+                                              ),
                                               Text(
                                                 '공유',
-                                                style: TextStyle(fontSize: 11, color: Colors.white60),
+                                                style: TextStyle(
+                                                    fontSize: 11,
+                                                    color: Colors.white60),
                                               )
                                             ],
-                                          ),),
+                                          ),
+                                        ),
                                       )
                                     ],
                                   ),

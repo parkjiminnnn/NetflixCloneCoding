@@ -1,15 +1,21 @@
-class Movie{
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+class Movie {
   final String title;
   final String keyword;
   final String poster;
   final bool like;
+  final DocumentReference reference;
 
-  Movie.fromMap(Map<String, dynamic> map)
-  : title = map['title'],
-    keyword = map['keyword'],
-    poster = map['poster'],
-    like = map['like'];
+  Movie.fromMap(Map<String, dynamic> map, {required this.reference})
+      : title = map['title'],
+        keyword = map['keyword'],
+        poster = map['poster'],
+        like = map['like'];
 
-    @override
-    String toString() => "Movie<$title$keyword>";
+  Movie.fromSnapshot(DocumentSnapshot snapshot)
+      : this.fromMap(snapshot.data() as Map<String, dynamic>, reference: snapshot.reference);
+
+  @override
+  String toString() => "Movie<$title $keyword>";
 }
